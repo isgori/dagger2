@@ -2,11 +2,19 @@ package com.example.dagger2;
 
 import dagger.Binds;
 import dagger.Module;
+import dagger.Provides;
+
 
 @Module
-public abstract class DieselEngineModule {
+public class DieselEngineModule {
+    private int horsePower;
 
-    @Binds
-    abstract Engine bindDieselEngine(DieselEngine engine);
+    public DieselEngineModule(int horsePower) {
+        this.horsePower = horsePower;
+    }
 
+    @Provides
+    Engine provideEngine() {
+        return new DieselEngine(horsePower);
+    }
 }
